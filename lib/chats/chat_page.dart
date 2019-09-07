@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:messenger_app/chats/message.dart';
 
 class ChatPage extends StatefulWidget {
+  final int id;
+
+  const ChatPage({Key key, this.id}) : super(key: key);
+
   @override
   ChatPageState createState() => ChatPageState();
 }
@@ -9,13 +13,14 @@ class ChatPage extends StatefulWidget {
 class ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
   TextEditingController _textController = new TextEditingController();
   String text;
+
   List<Message> messages = <Message>[];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Chat Page'),
+        title: Text('Chat id: ' + widget.id.toString()),
       ),
       body: Column(
         children: <Widget>[

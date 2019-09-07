@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:messenger_app/chats/chat_page.dart';
+import 'package:messenger_app/chats/chats_screen.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
+      initialIndex: 1,
       child: Scaffold(
         appBar: AppBar(
           title: Text('My Chat App'),
@@ -28,12 +29,13 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Text('Camera'),
-            IconButton(icon: Icon(Icons.person), onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
-            }),
-            Text('Status'),
-            Text('Calls')
+            Center(child: Text('Camera')),
+//            IconButton(icon: Icon(Icons.person), onPressed: (){
+//              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
+//            }),
+            ChatsScreen(),
+            Center(child: Text('Status')),
+            Center(child: Text('Calls'))
           ],
         ),
       ),
