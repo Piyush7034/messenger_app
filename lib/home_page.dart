@@ -10,6 +10,10 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('My Chat App'),
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.search), onPressed: null),
+            IconButton(icon: Icon(Icons.more_vert), onPressed: null)
+          ],
           bottom: TabBar(
             tabs: [
               Tab(

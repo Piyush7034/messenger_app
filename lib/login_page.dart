@@ -19,7 +19,14 @@ class LoginPageState extends State<LoginPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      color: Color.fromRGBO(0, 0, 255, 0.5),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/bgimage.jpeg'),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.75), BlendMode.dstATop),
+        ),
+      ),
       child: Form(
         key: _formKey,
         child: Center(
