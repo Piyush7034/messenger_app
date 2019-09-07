@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger_app/chats/chats_screen.dart';
+import 'package:messenger_app/status_manager/status_option.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
 //              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
 //            }),
             ChatsScreen(),
-            Center(child: Text('Status')),
+            StatusOption(),
             Center(child: Text('Calls'))
           ],
         ),
