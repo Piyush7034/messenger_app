@@ -141,21 +141,24 @@ class AddUserState extends State<AddUser> {
                 height: 20.0,
               ),
               Container(
-                child: RaisedButton(onPressed: () {
-                  if (_formKey.currentState.validate()) {
-                    setState(() {
-                      User user = User(
-                        name: name,
-                        age: age,
-                        contactNo: contactNo,
-                        gender: gender,
-                      );
-                      widget.users.add(user);
-                      print(user.name);
-                      Navigator.pop(context);
-                    });
-                  }
-                }),
+                child: RaisedButton(
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      setState(() {
+                        User user = User(
+                          name: name,
+                          age: age,
+                          contactNo: contactNo,
+                          gender: gender,
+                        );
+                        widget.users.add(user);
+                        print(user.name);
+                        Navigator.pop(context);
+                      });
+                    }
+                  },
+                  child: Text('Add'),
+                ),
               )
             ],
           ),
