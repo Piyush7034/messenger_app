@@ -25,10 +25,10 @@ class LoginPageState extends State<LoginPage> {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/bgimage.jpeg'),
+            image: AssetImage('assets/bgimage.png'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.75), BlendMode.dstATop),
+                Colors.black.withOpacity(0.95), BlendMode.dstATop),
           ),
         ),
         child: Form(
@@ -39,28 +39,30 @@ class LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Please login to continue',
+                  'Login',
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Colors.black,
+                      decoration: TextDecoration.underline),
                 ),
                 SizedBox(
                   height: 25.0,
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
                   margin: EdgeInsets.all(10.0),
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                        labelText: 'Email',
-                        alignLabelWithHint: true,
-                        border: InputBorder.none),
+                      labelText: 'Email',
+                      labelStyle: TextStyle(color: Colors.white),
+                      alignLabelWithHint: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    ),
                     validator: (value) {
                       if (value.isEmpty) {
                         return 'Required';
@@ -74,17 +76,18 @@ class LoginPageState extends State<LoginPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
                   margin: EdgeInsets.all(10.0),
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                        labelText: 'Password',
-                        alignLabelWithHint: true,
-                        border: InputBorder.none),
+                      labelText: 'Password',
+                      labelStyle: TextStyle(color: Colors.white),
+                      alignLabelWithHint: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    ),
                     obscureText: true,
                     validator: (value) {
                       if (value.isEmpty) {
@@ -103,10 +106,17 @@ class LoginPageState extends State<LoginPage> {
                 ),
                 RaisedButton(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Container(
+                    width: width * 0.75,
+                    margin: EdgeInsets.all(10.0),
+                    height: 40,
+                    child: Center(
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white,fontSize: 20),
+                      ),
+                    ),
                   ),
                   color: Colors.deepOrange,
                   onPressed: () {

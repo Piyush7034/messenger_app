@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:messenger_app/chats/chat_page.dart';
-import 'package:messenger_app/models/user.dart';
+import 'package:messenger_app/chats/user.dart';
 import 'package:messenger_app/user_manager/add_user.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -9,37 +8,32 @@ class ChatsScreen extends StatefulWidget {
 }
 
 class ChatsScreenState extends State<ChatsScreen> {
+  final List<User> users = new List<User>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+          child: Icon(Icons.add),
           onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AddUser()));
-      }),
-      body: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: <Widget>[
-                InkWell(
-                  child: User(
-                    id: index + 1,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ChatPage(
-                                  id: index + 1,
-                                )));
-                  },
-                ),
-                Divider()
-              ],
-            );
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AddUser(
+                          users: users,
+                        )));
           }),
+      body: users == null || users.length > 0
+          ? Center(
+              child: Text('Add a user to start chatting'),
+            )
+          : ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (BuildContext context, int index) {
+                print(index);
+                return users[index];
+              },
+            ),
     );
   }
 }

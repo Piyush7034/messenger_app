@@ -21,7 +21,9 @@ class AddStatusState extends State<AddStatus> {
             child: Center(
               child: TextField(
                 controller: _textController,
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(
+                  fontSize: 24,
+                ),
                 decoration: InputDecoration(
                   hintText: 'Type here',
                   border: InputBorder.none,
