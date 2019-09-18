@@ -104,31 +104,39 @@ class LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 20.0,
                 ),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                    width: width * 0.75,
-                    margin: EdgeInsets.all(10.0),
-                    height: 40,
-                    child: Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(color: Colors.white,fontSize: 20),
-                      ),
+                Row(
+                  children: <Widget>[
+                    FlatButton(
+                      onPressed: null,
+                      child: Text('Register'),
                     ),
-                  ),
-                  color: Colors.deepOrange,
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Container(
+                        width: width * 0.75,
+                        margin: EdgeInsets.all(10.0),
+                        height: 40,
+                        child: Center(
+                          child: Text(
+                            'Login',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
                         ),
-                      );
-                    }
-                  },
+                      ),
+                      color: Colors.deepOrange,
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ],
                 )
               ],
             ),
