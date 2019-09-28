@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:messenger_app/chats/user.dart';
+import 'package:messenger_app/chats/user_page.dart';
 
 class AddUser extends StatefulWidget {
-  final List<User> users;
+  final List<UserPage> users;
 
   AddUser({this.users});
 
@@ -145,7 +145,7 @@ class AddUserState extends State<AddUser> {
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       setState(() {
-                        User user = User(
+                        UserPage user = UserPage(
                           name: name,
                           age: age,
                           contactNo: contactNo,
@@ -153,7 +153,7 @@ class AddUserState extends State<AddUser> {
                         );
                         widget.users.add(user);
                         print(user.name);
-                        Navigator.pop(context);
+                        Navigator.pop(context, widget.users);
                       });
                     }
                   },

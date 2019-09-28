@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:messenger_app/chats/user.dart';
+import 'package:messenger_app/chats/user_page.dart';
 import 'package:messenger_app/user_manager/add_user.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -8,7 +8,7 @@ class ChatsScreen extends StatefulWidget {
 }
 
 class ChatsScreenState extends State<ChatsScreen> {
-  final List<User> users = new List<User>();
+  final List<UserPage> users = new List<UserPage>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ChatsScreenState extends State<ChatsScreen> {
                           users: users,
                         )));
           }),
-      body: users == null || users.length > 0
+      body: users == null
           ? Center(
               child: Text('Add a user to start chatting'),
             )

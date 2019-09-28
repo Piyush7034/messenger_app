@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class User extends StatelessWidget {
+class UserPage extends StatelessWidget {
   final String name;
   final int age;
   final String contactNo;
   final String gender;
 
-  User({this.age, this.contactNo, this.gender, this.name});
+  UserPage({this.age, this.contactNo, this.gender, this.name});
 
   @override
   Widget build(BuildContext context) {
