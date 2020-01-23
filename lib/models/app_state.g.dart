@@ -17,21 +17,58 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
   @override
   Iterable<Object> serialize(Serializers serializers, AppState object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    final result = <Object>[];
+    if (object.userState != null) {
+      result
+        ..add('userState')
+        ..add(serializers.serialize(object.userState,
+            specifiedType: const FullType(UserState)));
+    }
+    if (object.isLoading != null) {
+      result
+        ..add('isLoading')
+        ..add(serializers.serialize(object.isLoading,
+            specifiedType: const FullType(bool)));
+    }
+    return result;
   }
 
   @override
   AppState deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return new AppStateBuilder().build();
+    final result = new AppStateBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'userState':
+          result.userState.replace(serializers.deserialize(value,
+              specifiedType: const FullType(UserState)) as UserState);
+          break;
+        case 'isLoading':
+          result.isLoading = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+      }
+    }
+
+    return result.build();
   }
 }
 
 class _$AppState extends AppState {
+  @override
+  final UserState userState;
+  @override
+  final bool isLoading;
+
   factory _$AppState([void Function(AppStateBuilder) updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._() : super._();
+  _$AppState._({this.userState, this.isLoading}) : super._();
 
   @override
   AppState rebuild(void Function(AppStateBuilder) updates) =>
@@ -43,24 +80,47 @@ class _$AppState extends AppState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is AppState;
+    return other is AppState &&
+        userState == other.userState &&
+        isLoading == other.isLoading;
   }
 
   @override
   int get hashCode {
-    return 134797703;
+    return $jf($jc($jc(0, userState.hashCode), isLoading.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('AppState').toString();
+    return (newBuiltValueToStringHelper('AppState')
+          ..add('userState', userState)
+          ..add('isLoading', isLoading))
+        .toString();
   }
 }
 
 class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   _$AppState _$v;
 
+  UserStateBuilder _userState;
+  UserStateBuilder get userState =>
+      _$this._userState ??= new UserStateBuilder();
+  set userState(UserStateBuilder userState) => _$this._userState = userState;
+
+  bool _isLoading;
+  bool get isLoading => _$this._isLoading;
+  set isLoading(bool isLoading) => _$this._isLoading = isLoading;
+
   AppStateBuilder();
+
+  AppStateBuilder get _$this {
+    if (_$v != null) {
+      _userState = _$v.userState?.toBuilder();
+      _isLoading = _$v.isLoading;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(AppState other) {
@@ -77,7 +137,22 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
 
   @override
   _$AppState build() {
-    final _$result = _$v ?? new _$AppState._();
+    _$AppState _$result;
+    try {
+      _$result = _$v ??
+          new _$AppState._(
+              userState: _userState?.build(), isLoading: isLoading);
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'userState';
+        _userState?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'AppState', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

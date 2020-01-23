@@ -14,14 +14,7 @@ abstract class User implements Built<User, UserBuilder> {
   @nullable
   String get age;
 
-  String get email;
-
-  String get password;
-
-
   User._();
 
   factory User([updates(UserBuilder b)]) = _$User;
-
-
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:messenger_app/actions/signin_action.dart';
 import 'package:messenger_app/models/app_state.dart';
 import 'package:messenger_app/models/user.dart';
 import 'package:messenger_app/register.dart';
@@ -28,16 +29,19 @@ class _ViewModel {
 
   static _ViewModel fromStore(Store<AppState> store) {
     FirebaseUserService firebaseUserService = FirebaseUserService.getInstance();
-    return _ViewModel(onSignUp: ({String email, String password}) {
-      Random random = new Random();
-      int userId = random.nextInt(1000);
-      User user = User((b) {
-        b
-          ..id = userId.toString()
-          ..name = 'Piyush'
-          ..age = '19';
-      });
-      firebaseUserService.onSignUp(email, password, user);
-    });
+    return _ViewModel(
+      onSignUp: ({String email, String password}) {
+        Random random = new Random();
+        int userId = random.nextInt(1000);
+        User user = User((b) {
+          b
+            ..id = userId.toString()
+            ..name = 'Piyush $userId'
+            ..age = '19';
+        });
+        firebaseUserService.onSignUp(email, password, user);
+        store.dispatch(SignUpUser(user: user, isSigningUp: true,email: email,password: password));
+      },
+    );
   }
 }

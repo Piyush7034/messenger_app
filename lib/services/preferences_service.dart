@@ -9,7 +9,7 @@ class PreferencesService {
 
   static final PreferencesService _instance = PreferencesService._();
 
-  factory PreferencesService() => _instance;
+  factory PreferencesService.getInstance() => _instance;
 
   static const AUTH_TOKEN = "auth_token";
   static const LOGGED_IN_USER = "logged_in_user";
