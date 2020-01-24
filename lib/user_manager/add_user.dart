@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:messenger_app/models/user.dart';
 
 class AddUser extends StatefulWidget {
+  List<User> users = List<User>();
+
+  AddUser({
+    this.users,
+  });
+
   @override
   AddUserState createState() => AddUserState();
 }
@@ -13,9 +19,6 @@ class AddUserState extends State<AddUser> {
   String age;
   String gender;
   String contactNo;
-  List<User> users = [];
-
-  AddUserState({this.users});
 
   @override
   Widget build(BuildContext context) {
@@ -141,19 +144,23 @@ class AddUserState extends State<AddUser> {
                 height: 20.0,
               ),
               Container(
-                child: RaisedButton(onPressed: () {
-                  setState(() {
-                    User user = User(
-                      id: id,
-                      age: age,
-                      contactNo: contactNo,
-                      gender: gender,
+                child: RaisedButton(
+                  onPressed: () {
+                    setState(
+                      () {
+                        User user = User(
+                          id: id,
+                          age: age,
+                          contactNo: contactNo,
+                          gender: gender,
+                        );
+                        widget.users.add(user);
+                        print(user.id);
+                      },
                     );
-                    users.add(user);
-                    print(user.id);
-                  });
-                  Navigator.pop(context, users);
-                }),
+                    Navigator.pop(context, widget.users);
+                  },
+                ),
               )
             ],
           ),
