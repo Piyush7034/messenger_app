@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:messenger_app/models/user.dart';
+import 'package:messenger_app/chats/chat_page.dart';
+import 'package:messenger_app/models/user_data.dart';
 import 'package:messenger_app/user_manager/add_user.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -8,7 +9,7 @@ class ChatsScreen extends StatefulWidget {
 }
 
 class ChatsScreenState extends State<ChatsScreen> {
-  List<User> users = List<User>();
+  List<UserData> users = List<UserData>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +27,17 @@ class ChatsScreenState extends State<ChatsScreen> {
       body: ListView.builder(
           itemCount: users.length,
           itemBuilder: (BuildContext context, int index) {
-            return users[index];
-//              Column(
-//              children: <Widget>[
-//                InkWell(
-//                  child: User(
-//                    id: index + 1,
-//                  ),
-//                  onTap: () {
-//                    Navigator.push(
-//                        context,
-//                        MaterialPageRoute(
-//                            builder: (context) => ChatPage(
-//                                  id: index + 1,
-//                                )));
-//                  },
-//                ),
-//                Divider()
-//              ],
-//            );
+            return InkWell(
+              child: users[index],
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatPage(
+                              id: index + 1,
+                            )));
+              },
+            );
           }),
     );
   }

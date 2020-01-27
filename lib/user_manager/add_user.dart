@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:messenger_app/models/user.dart';
+import 'package:messenger_app/models/user_data.dart';
 
 class AddUser extends StatefulWidget {
-  List<User> users = List<User>();
+  final List<UserData> users;
 
   AddUser({
     this.users,
@@ -146,19 +146,21 @@ class AddUserState extends State<AddUser> {
               Container(
                 child: RaisedButton(
                   onPressed: () {
-                    setState(
-                      () {
-                        User user = User(
-                          id: id,
-                          age: age,
-                          contactNo: contactNo,
-                          gender: gender,
-                        );
-                        widget.users.add(user);
-                        print(user.id);
-                      },
-                    );
-                    Navigator.pop(context, widget.users);
+                    if (_formKey.currentState.validate()) {
+                      setState(
+                        () {
+                          UserData user = UserData(
+                            id: id,
+                            age: age,
+                            contactNo: contactNo,
+                            gender: gender,
+                          );
+                          widget.users.add(user);
+                          print(user.id);
+                        },
+                      );
+                      Navigator.pop(context, widget.users);
+                    }
                   },
                 ),
               )
