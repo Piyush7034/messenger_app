@@ -1,5 +1,5 @@
-import 'package:mobx/mobx.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mobx/mobx.dart';
 
 part 'user.g.dart';
 

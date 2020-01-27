@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:messenger_app/models/user_data.dart';
 
 class AddUser extends StatefulWidget {
@@ -7,16 +8,23 @@ class AddUser extends StatefulWidget {
   AddUser({
     this.users,
   });
+=======
+import 'package:messenger_app/chats/user_page.dart';
+
+class AddUser extends StatefulWidget {
+  final List<UserPage> users;
+
+  AddUser({this.users});
+>>>>>>> cb31ba9cfcd72825b5500c96ccdc9d2b9310a104
 
   @override
   AddUserState createState() => AddUserState();
 }
 
 class AddUserState extends State<AddUser> {
-//  User user;
   final _formKey = GlobalKey<FormState>();
-  int id;
-  String age;
+  String name;
+  int age;
   String gender;
   String contactNo;
 
@@ -47,7 +55,7 @@ class AddUserState extends State<AddUser> {
                           return 'Required';
                         }
                         setState(() {
-                          id = int.parse(value);
+                          name = value;
                         });
 
                         return null;
@@ -75,7 +83,7 @@ class AddUserState extends State<AddUser> {
                           return 'Required';
                         }
                         setState(() {
-                          age = value;
+                          age = int.parse(value);
                         });
                         return null;
                       },
@@ -147,6 +155,7 @@ class AddUserState extends State<AddUser> {
                 child: RaisedButton(
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
+<<<<<<< HEAD
                       setState(
                         () {
                           UserData user = UserData(
@@ -162,6 +171,22 @@ class AddUserState extends State<AddUser> {
                       Navigator.pop(context, widget.users);
                     }
                   },
+=======
+                      setState(() {
+                        UserPage user = UserPage(
+                          name: name,
+                          age: age,
+                          contactNo: contactNo,
+                          gender: gender,
+                        );
+                        widget.users.add(user);
+                        print(user.name);
+                        Navigator.pop(context, widget.users);
+                      });
+                    }
+                  },
+                  child: Text('Add'),
+>>>>>>> cb31ba9cfcd72825b5500c96ccdc9d2b9310a104
                 ),
               )
             ],

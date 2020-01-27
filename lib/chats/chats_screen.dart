@@ -24,21 +24,25 @@ class ChatsScreenState extends State<ChatsScreen> {
                           users: users,
                         )));
           }),
-      body: ListView.builder(
-          itemCount: users.length,
-          itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-              child: users[index],
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChatPage(
-                              id: index + 1,
-                            )));
-              },
-            );
-          }),
+      body: users == null
+          ? Center(
+              child: Text('Add a user to start chatting'),
+            )
+          : ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  child: users[index],
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChatPage(
+                                  id: index + 1,
+                                )));
+                  },
+                );
+              }),
     );
   }
 }
